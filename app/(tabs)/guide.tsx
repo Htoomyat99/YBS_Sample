@@ -156,10 +156,10 @@ const styles = StyleSheet.create({
     width: "40%",
     textAlign: "center",
     textAlignVertical: "center",
-    alignSelf: "center",
+    alignSelf: isIos ? "center" : "auto",
   },
   iconContainer: {
     padding: 12,
-    alignItems: "center",
+    justifyContent: "center",
   },
 });
