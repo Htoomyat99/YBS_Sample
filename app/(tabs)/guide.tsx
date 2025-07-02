@@ -1,12 +1,20 @@
 import { YbsGuideData } from "@/src/common/dummy/DummyData";
 import { YbsGuideDataType } from "@/src/common/dummy/dummyType";
+import { isAndroid, isIos } from "@/src/common/utils/detectPlatform";
 import common from "@/src/constants/common";
 import { local } from "@/src/constants/local";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React, { useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 const Guide = () => {
   const colors = useThemeColors();
 
@@ -49,37 +57,43 @@ const Guide = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.infoText, { color: colors.text }]}>
-        {local.findBusInfo}
-      </Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={isIos ? "padding" : "height"}
+      keyboardVerticalOffset={isAndroid ? 100 : 20}
+    >
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <Text style={[styles.infoText, { color: colors.text }]}>
+          {local.findBusInfo}
+        </Text>
 
-      <View
-        style={[
-          styles.inputContainer,
-          { backgroundColor: colors.inputBackground },
-        ]}
-      >
-        <Feather name="menu" size={24} color={colors.icon} />
+        <View
+          style={[
+            styles.inputContainer,
+            { backgroundColor: colors.inputBackground },
+          ]}
+        >
+          <Feather name="menu" size={24} color={colors.icon} />
 
-        <TextInput
-          style={[styles.input, { color: colors.text }]}
-          placeholder={local.enterBusNo}
-          value={search}
-          onChangeText={setSearch}
-          placeholderTextColor={colors.placeholderText}
+          <TextInput
+            style={[styles.input, { color: colors.text }]}
+            placeholder={local.enterBusNo}
+            value={search}
+            onChangeText={setSearch}
+            placeholderTextColor={colors.placeholderText}
+          />
+        </View>
+
+        <FlatList
+          style={{ marginTop: 8 }}
+          contentContainerStyle={{ paddingBottom: isIos ? 100 : 20 }}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id.toString()}
+          data={YbsGuideData}
+          renderItem={renderItem}
         />
       </View>
-
-      <FlatList
-        style={{ marginTop: 8 }}
-        contentContainerStyle={{ paddingBottom: 20 }}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        data={YbsGuideData}
-        renderItem={renderItem}
-      />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -100,7 +114,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 15,
     paddingHorizontal: 15,
-    paddingVertical: 5,
+    paddingVertical: isIos ? 12 : 7,
   },
   input: {
     flex: 1,
@@ -142,6 +156,7 @@ const styles = StyleSheet.create({
     width: "40%",
     textAlign: "center",
     textAlignVertical: "center",
+    alignSelf: "center",
   },
   iconContainer: {
     padding: 12,
