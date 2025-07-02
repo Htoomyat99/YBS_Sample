@@ -1,4 +1,5 @@
 import { locationList } from "@/LocationList";
+import { useBottomTabOverflow } from "@components/ui/TabBarBackground.ios";
 import { AppleMaps, GoogleMaps } from "expo-maps";
 import React, { useState } from "react";
 import {
@@ -9,7 +10,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { useBottomTabOverflow } from "../../src/components/ui/TabBarBackground.ios";
 
 export default function HomeScreen() {
   const bottom = useBottomTabOverflow();
