@@ -17,6 +17,10 @@ export const Colors = {
 
     lightmain: "#F8D44C21",
     tabBarBackground: "#F3EDF7",
+
+    blue: "#146BED",
+    red: "#B3261E",
+    lightGreen: "#2ECC71",
   },
   dark: {
     main: "#FFD32C",
@@ -30,6 +34,10 @@ export const Colors = {
     placeholderText: "#A0A0A0",
     lightmain: "#FFD32C33",
     tabBarBackground: "#232629",
+
+    blue: "##146BED",
+    red: "#B3261E",
+    lightGreen: "#2ECC71",
   },
 };
 

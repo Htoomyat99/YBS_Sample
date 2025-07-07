@@ -6,8 +6,9 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useColorScheme } from "@hooks/useColorScheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export default function RootLayout() {
@@ -31,11 +32,15 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
       </ThemeProvider>
     </QueryClientProvider>
   );

@@ -25,6 +25,10 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
   },
+  flexRowAlignCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
   //FONT_SIZES
   regularSmall: {
@@ -46,6 +50,10 @@ export default StyleSheet.create({
   regularxLarge: {
     fontFamily: "RobotoRegular",
     fontSize: FontSize.xLarge,
+  },
+  regularxxLarge: {
+    fontFamily: "RobotoRegular",
+    fontSize: FontSize.xxLarge,
   },
 
   semiBoldSmall: {

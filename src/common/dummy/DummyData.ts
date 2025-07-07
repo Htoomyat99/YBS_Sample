@@ -1,3 +1,5 @@
+import { BusRoutesType } from "./dummyType";
+
 export const YbsGuideData = [
   {
     id: 1,
@@ -158,4 +160,66 @@ export const NotiData = [
     content:
       "A new version of the YBS app is available. The update includes bug fixes and performance improvements. Please update the app to the latest version to enjoy the best experience.",
   },
+];
+
+export const SuggestedPlace = [
+  {
+    id: 1,
+    name: "City Mall (Seint John)",
+    image: require("@/assets/images/city-mall.png"),
+  },
+  {
+    id: 2,
+    name: "Junction City",
+    image: require("@/assets/images/junction-city.png"),
+  },
+  {
+    id: 3,
+    name: "Time City",
+    image: require("@/assets/images/time-city.png"),
+  },
+];
+
+export const AvailableRoutes = [
+  {
+    id: 1,
+    busNo: "78",
+    scheduleTime: "09:45",
+    time: "20",
+    cost: 400,
+    fromRoute: "Seik Pyoe Yay",
+  },
+  {
+    id: 2,
+    busNo: "37",
+    scheduleTime: "09:55",
+    time: "20",
+    cost: 400,
+    fromRoute: "Seik Pyoe Yay",
+  },
+  {
+    id: 3,
+    busNo: "105",
+    scheduleTime: "10:05",
+    time: "20",
+    cost: 400,
+    fromRoute: "Seik Pyoe Yay",
+  },
+  {
+    id: 4,
+    busNo: "106",
+    scheduleTime: "10:15",
+    time: "20",
+    cost: 400,
+    fromRoute: "Seik Pyoe Yay",
+  },
+];
+
+export const BusRoutes: BusRoutesType[] = [
+  { id: 1, route: "Hledan - U Tun Lin Chang St" },
+  { id: 2, route: "Seik Pyoe Yay", isNearest: true },
+  { id: 3, route: "Han Thar Waddy Awaine" },
+  { id: 4, route: "Mahar Myaing" },
+  { id: 5, route: "Mayenigone" },
+  { id: 6, route: "Helpin" },
 ];
