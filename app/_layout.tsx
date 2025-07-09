@@ -8,6 +8,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import GlobalModal from "@/src/components/GlobalModal";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useColorScheme } from "@hooks/useColorScheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -36,8 +37,10 @@ export default function RootLayout() {
           <BottomSheetModalProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="thank" options={{ headerShown: false }} />
               <Stack.Screen name="+not-found" />
             </Stack>
+            <GlobalModal />
             <StatusBar style="auto" />
           </BottomSheetModalProvider>
         </GestureHandlerRootView>

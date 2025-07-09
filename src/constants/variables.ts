@@ -52,5 +52,6 @@ export const FontSize = {
   large: 16,
   xLarge: 18,
   xxLarge: 20,
-  xxxLarge: 22,
+  xxLarge22: 22,
+  xxLarge25: 25,
 };

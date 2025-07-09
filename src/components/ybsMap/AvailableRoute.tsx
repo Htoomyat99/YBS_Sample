@@ -2,6 +2,7 @@
 import { AvailableRoutes } from "@/src/common/dummy/DummyData";
 import { AvailableRoutesType } from "@/src/common/dummy/dummyType";
 import common from "@/src/constants/common";
+import { local } from "@/src/constants/local";
 import { Colors } from "@/src/constants/variables";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -11,30 +12,21 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
   const colors = useThemeColors();
+  const fromRoute = "Seik Pyoe Yay";
+  const toRoute = "City Mall (Saint John)";
 
   const renderItem = useCallback(
     ({ item }: { item: AvailableRoutesType }) => (
       <Pressable
         onPress={goItemDetail}
         style={{
-          paddingHorizontal: 5,
-          borderBottomWidth: item.id === AvailableRoute.length - 1 ? 0 : 1,
-          paddingVertical: 10,
+          ...styles.itemContainer,
           borderBottomColor: colors.divider,
+          borderBottomWidth: item.id === AvailableRoute.length - 1 ? 0 : 1,
         }}
       >
         <View style={common.flexRowBetweenCenter}>
-          <View
-            style={[
-              common.flexRowAlignCenter,
-              {
-                gap: 10,
-                backgroundColor: Colors.light.blue,
-                padding: 7,
-                borderRadius: 10,
-              },
-            ]}
-          >
+          <View style={[common.flexRowAlignCenter, styles.busIconContainer]}>
             <FontAwesome6 name="bus" size={24} color={Colors.dark.text} />
 
             <Text style={[common.regularLarge, { color: Colors.dark.text }]}>
@@ -69,7 +61,7 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
   return (
     <>
       <Text style={[common.regularxxLarge, { color: colors.text }]}>
-        Available Routes
+        {local.availableRoutes}
       </Text>
 
       <View style={{ marginTop: 20, ...common.flexRowBetweenCenter }}>
@@ -78,7 +70,7 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
             numberOfLines={1}
             style={[common.regularMedium13, { color: Colors.dark.text }]}
           >
-            Seik Pyoe Yay
+            {fromRoute}
           </Text>
         </View>
 
@@ -89,7 +81,7 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
             numberOfLines={1}
             style={[common.regularMedium13, { color: Colors.dark.text }]}
           >
-            City Mall (Saint John)
+            {toRoute}
           </Text>
         </View>
       </View>
@@ -118,5 +110,15 @@ const styles = StyleSheet.create({
   },
   routeName: {
     ...common.regularMedium13,
+  },
+  itemContainer: {
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
+  busIconContainer: {
+    gap: 10,
+    backgroundColor: Colors.light.blue,
+    padding: 7,
+    borderRadius: 10,
   },
 });

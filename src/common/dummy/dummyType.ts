@@ -41,3 +41,8 @@ export type BusRoutesType = {
   route: string;
   isNearest?: boolean;
 };
+
+export type DestinationType = {
+  id: number;
+  route: string;
+};

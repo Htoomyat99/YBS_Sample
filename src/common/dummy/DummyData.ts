@@ -1,4 +1,4 @@
-import { BusRoutesType } from "./dummyType";
+import { BusRoutesType, DestinationType } from "./dummyType";
 
 export const YbsGuideData = [
   {
@@ -222,4 +222,63 @@ export const BusRoutes: BusRoutesType[] = [
   { id: 4, route: "Mahar Myaing" },
   { id: 5, route: "Mayenigone" },
   { id: 6, route: "Helpin" },
+];
+
+export const Destination: DestinationType[] = [
+  { id: 1, route: "Seik Pyoe Yay" },
+  { id: 2, route: "Han Thar Waddy Awaine" },
+  { id: 3, route: "Mahar Myaing" },
+  { id: 4, route: "Maynigone" },
+  { id: 5, route: "Helpin" },
+  { id: 6, route: "Bago Club" },
+  { id: 7, route: "City Mall" },
+];
+
+export const markersGoogle = [
+  {
+    coordinates: { latitude: 16.80528, longitude: 96.15611 },
+    title: "Yangon",
+    snippet: "Yangon",
+    draggable: true,
+  },
+  {
+    coordinates: { latitude: 49.259133, longitude: -123.10079 },
+    title: "49th Parallel Café & Lucky's Doughnuts - Main Street",
+    snippet: "49th Parallel Café & Lucky's Doughnuts - Main Street",
+    draggable: true,
+  },
+  {
+    coordinates: { latitude: 49.268034, longitude: -123.154819 },
+    title: "49th Parallel Café & Lucky's Doughnuts - 4th Ave",
+    snippet: "49th Parallel Café & Lucky's Doughnuts - 4th Ave",
+    draggable: true,
+  },
+  {
+    coordinates: { latitude: 49.286036, longitude: -123.12303 },
+    title: "49th Parallel Café & Lucky's Doughnuts - Thurlow",
+    snippet: "49th Parallel Café & Lucky's Doughnuts - Thurlow",
+    draggable: true,
+  },
+  {
+    coordinates: { latitude: 49.311879, longitude: -123.079241 },
+    title: "49th Parallel Café & Lucky's Doughnuts - Lonsdale",
+    snippet: "49th Parallel Café & Lucky's Doughnuts - Lonsdale",
+    draggable: true,
+  },
+  {
+    coordinates: {
+      latitude: 49.27235336018808,
+      longitude: -123.13455838338278,
+    },
+    title: "A La Mode Pie Café - Granville Island",
+    snippet: "A La Mode Pie Café - Granville Island",
+    draggable: true,
+  },
+];
+
+export const polylineCoordinates = [
+  { latitude: 49.259122, longitude: -123.10079 },
+  { latitude: 49.268011, longitude: -123.154819 },
+  { latitude: 49.286055, longitude: -123.12303 },
+  { latitude: 49.311866, longitude: -123.079241 },
 ];

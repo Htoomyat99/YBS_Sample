@@ -31,6 +31,10 @@ export default StyleSheet.create({
   },
 
   //FONT_SIZES
+  regularXsmall: {
+    fontFamily: "RobotoRegular",
+    fontSize: FontSize.xSmall,
+  },
   regularSmall: {
     fontFamily: "RobotoRegular",
     fontSize: FontSize.small,
@@ -55,6 +59,10 @@ export default StyleSheet.create({
     fontFamily: "RobotoRegular",
     fontSize: FontSize.xxLarge,
   },
+  regularxxLarge25: {
+    fontFamily: "RobotoRegular",
+    fontSize: FontSize.xxLarge25,
+  },
 
   semiBoldSmall: {
     fontFamily: "RobotoSemiBold",
@@ -74,6 +82,6 @@ export default StyleSheet.create({
   },
   semiBoldHeader: {
     fontFamily: "RobotoSemiBold",
-    fontSize: FontSize.xxxLarge,
+    fontSize: FontSize.xxLarge22,
   },
 });

@@ -1,12 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import {
+  markersGoogle,
+  polylineCoordinates,
+} from "@/src/common/dummy/DummyData";
 import AvailableRoute from "@/src/components/ybsMap/AvailableRoute";
+import DestinationHeader from "@/src/components/ybsMap/DestinationHeader";
+import DrivingDestinations from "@/src/components/ybsMap/DrivingDestinations";
 import SelectedRouteHeader from "@/src/components/ybsMap/SelectedRouteHeader";
+import TimeLine from "@/src/components/ybsMap/TimeLine";
 import YbsMapSearch from "@/src/components/ybsMap/YbsMapSearch";
 import common from "@/src/constants/common";
 import { Colors } from "@/src/constants/variables";
 import { Ionicons } from "@expo/vector-icons";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
-import TimeLine from "@src/components/ybsMap/TimeLine";
 import * as Location from "expo-location";
 import { AppleMaps, GoogleMaps } from "expo-maps";
 import { GoogleMapsMapType } from "expo-maps/build/google/GoogleMaps.types";
@@ -138,7 +144,7 @@ export default function LocationPermissionExample() {
   };
 
   // variables
-  const snapPoints = useMemo(() => ["15%", "60%"], []);
+  const snapPoints = useMemo(() => ["20%", "60%"], []);
 
   const handlePresentModalPress = useCallback(() => {
     setBottomSheetPage(1);
@@ -150,6 +156,7 @@ export default function LocationPermissionExample() {
     setBottomSheetIndex(index);
     if (index === -1) {
       setBottomSheetPage(0);
+      setIsTrack(false);
     }
   }, []);
 
@@ -253,7 +260,7 @@ export default function LocationPermissionExample() {
           onChange={handleSheetChange}
           enableDynamicSizing={false}
           snapPoints={snapPoints}
-          handleIndicatorStyle={{ backgroundColor: "transparent" }}
+          handleIndicatorStyle={{}}
           index={1}
         >
           <BottomSheetView style={{ flex: 1, paddingHorizontal: 15 }}>
@@ -266,17 +273,29 @@ export default function LocationPermissionExample() {
                 <SelectedRouteHeader
                   isTrack={isTrack}
                   trackHandler={() => setIsTrack(!isTrack)}
+                  onConfirmDestination={() =>
+                    setBottomSheetPage((prev) => prev + 1)
+                  }
                 />
               ) : bottomSheetIndex === 1 ? (
                 <>
                   <SelectedRouteHeader
                     isTrack={isTrack}
                     trackHandler={() => setIsTrack(!isTrack)}
+                    onConfirmDestination={() =>
+                      setBottomSheetPage((prev) => prev + 1)
+                    }
                   />
 
                   <TimeLine isTrack={isTrack} />
                 </>
               ) : null
+            ) : bottomSheetPage === 3 ? (
+              bottomSheetIndex === 0 ? (
+                <DestinationHeader />
+              ) : (
+                <DrivingDestinations />
+              )
             ) : null}
           </BottomSheetView>
         </BottomSheetModal>
@@ -292,52 +311,3 @@ export default function LocationPermissionExample() {
     );
   }
 }
-
-const markersGoogle = [
-  {
-    coordinates: { latitude: 16.80528, longitude: 96.15611 },
-    title: "Yangon",
-    snippet: "Yangon",
-    draggable: true,
-  },
-  {
-    coordinates: { latitude: 49.259133, longitude: -123.10079 },
-    title: "49th Parallel Café & Lucky's Doughnuts - Main Street",
-    snippet: "49th Parallel Café & Lucky's Doughnuts - Main Street",
-    draggable: true,
-  },
-  {
-    coordinates: { latitude: 49.268034, longitude: -123.154819 },
-    title: "49th Parallel Café & Lucky's Doughnuts - 4th Ave",
-    snippet: "49th Parallel Café & Lucky's Doughnuts - 4th Ave",
-    draggable: true,
-  },
-  {
-    coordinates: { latitude: 49.286036, longitude: -123.12303 },
-    title: "49th Parallel Café & Lucky's Doughnuts - Thurlow",
-    snippet: "49th Parallel Café & Lucky's Doughnuts - Thurlow",
-    draggable: true,
-  },
-  {
-    coordinates: { latitude: 49.311879, longitude: -123.079241 },
-    title: "49th Parallel Café & Lucky's Doughnuts - Lonsdale",
-    snippet: "49th Parallel Café & Lucky's Doughnuts - Lonsdale",
-    draggable: true,
-  },
-  {
-    coordinates: {
-      latitude: 49.27235336018808,
-      longitude: -123.13455838338278,
-    },
-    title: "A La Mode Pie Café - Granville Island",
-    snippet: "A La Mode Pie Café - Granville Island",
-    draggable: true,
-  },
-];
-
-const polylineCoordinates = [
-  { latitude: 49.259122, longitude: -123.10079 },
-  { latitude: 49.268011, longitude: -123.154819 },
-  { latitude: 49.286055, longitude: -123.12303 },
-  { latitude: 49.311866, longitude: -123.079241 },
-];

@@ -1,17 +1,20 @@
 import common from "@/src/constants/common";
+import { local } from "@/src/constants/local";
 import { Colors } from "@/src/constants/variables";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const SelectedRouteHeader = ({
   isTrack,
   trackHandler,
+  onConfirmDestination,
 }: {
   isTrack: boolean;
   trackHandler: () => void;
+  onConfirmDestination: () => void;
 }) => {
   const colors = useThemeColors();
 
@@ -22,30 +25,18 @@ const SelectedRouteHeader = ({
 
   return (
     <View style={[common.flexRowBetweenCenter, { marginTop: 20 }]}>
-      <View
-        style={[
-          common.flexRowAlignCenter,
-          {
-            gap: 10,
-            backgroundColor: Colors.light.blue,
-            padding: 5,
-            borderRadius: 10,
-          },
-        ]}
+      <Pressable
+        onPress={onConfirmDestination}
+        style={[common.flexRowAlignCenter, styles.busContainer]}
       >
         <FontAwesome6 name="bus" size={24} color={Colors.dark.text} />
 
         <Text style={[common.regularLarge, { color: Colors.dark.text }]}>
           {busNo}
         </Text>
-      </View>
+      </Pressable>
 
-      <View
-        style={{
-          alignItems: "center",
-          maxWidth: "50%",
-        }}
-      >
+      <View style={styles.routeContainer}>
         <Text
           numberOfLines={1}
           style={[common.regularLarge, { color: colors.text }]}
@@ -62,13 +53,8 @@ const SelectedRouteHeader = ({
         onPress={trackHandler}
         style={[
           common.flexRowAlignCenter,
-          {
-            gap: 3,
-            backgroundColor: isTrack ? Colors.light.lightGreen : "#EEEEEE",
-            paddingVertical: 5,
-            paddingHorizontal: 12,
-            borderRadius: 20,
-          },
+          styles.trackContainer,
+          { backgroundColor: isTrack ? Colors.light.lightGreen : "#EEEEEE" },
         ]}
       >
         <MaterialIcons
@@ -83,7 +69,7 @@ const SelectedRouteHeader = ({
             { color: isTrack ? Colors.light.text : "#777777" },
           ]}
         >
-          Track
+          {local.track}
         </Text>
       </Pressable>
     </View>
@@ -91,3 +77,22 @@ const SelectedRouteHeader = ({
 };
 
 export default SelectedRouteHeader;
+
+const styles = StyleSheet.create({
+  busContainer: {
+    gap: 10,
+    backgroundColor: Colors.light.blue,
+    padding: 5,
+    borderRadius: 10,
+  },
+  routeContainer: {
+    alignItems: "center",
+    maxWidth: "50%",
+  },
+  trackContainer: {
+    gap: 3,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+});

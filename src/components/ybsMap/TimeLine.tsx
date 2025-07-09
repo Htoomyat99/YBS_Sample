@@ -1,46 +1,43 @@
 import { BusRoutes } from "@/src/common/dummy/DummyData";
 import { BusRoutesType } from "@/src/common/dummy/dummyType";
 import common from "@/src/constants/common";
+import { local } from "@/src/constants/local";
 import { Colors } from "@/src/constants/variables";
 import React from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
 const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
+  const currentTime = "9:30 AM";
+  const estimatedArrivalTime = "09:45";
+
   const busRouteRenderItem = ({ item }: { item: BusRoutesType }) => {
     return (
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "flex-start",
-          paddingHorizontal: 15,
-        }}
-      >
+      <View style={{ flexDirection: "row", paddingHorizontal: 15 }}>
         <View style={{ alignItems: "center", marginRight: 25 }}>
           <View
-            style={{
-              width: 20,
-              height: 20,
-              borderRadius: 10,
-              backgroundColor:
-                item.id === 1 || (item.isNearest && isTrack)
-                  ? Colors.light.main
-                  : item.isNearest && !isTrack
-                  ? "#777777"
-                  : "#CCCCCC",
-              borderWidth: item.id === 1 ? 1 : 0,
-              borderColor: "gray",
-            }}
+            style={[
+              styles.dotContainer,
+              {
+                backgroundColor:
+                  item.id === 1 || (item.isNearest && isTrack)
+                    ? Colors.light.main
+                    : item.isNearest && !isTrack
+                    ? "#777777"
+                    : "#CCCCCC",
+                borderWidth: item.id === 1 ? 1 : 0,
+              },
+            ]}
           />
 
           {item.id !== BusRoutes.length && (
             <View
-              style={{
-                width: 10,
-                height: 60,
-                backgroundColor: item.id === 1 ? Colors.light.blue : "#777777",
-                marginTop: 1,
-                borderRadius: 5,
-              }}
+              style={[
+                styles.tileContainer,
+                {
+                  backgroundColor:
+                    item.id === 1 ? Colors.light.blue : "#777777",
+                },
+              ]}
             />
           )}
         </View>
@@ -63,11 +60,11 @@ const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
 
           {item.id === 1 ? (
             <Text style={[common.regularMedium13, { color: "gray" }]}>
-              9:30 AM
+              {currentTime}
             </Text>
           ) : item.isNearest && !isTrack ? (
             <Text style={[common.regularMedium13, { color: "gray" }]}>
-              Estimate time to arrive - 09:45
+              {local.estimatedTimeToArrive} - {estimatedArrivalTime}
             </Text>
           ) : null}
         </View>
@@ -88,3 +85,18 @@ const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
 };
 
 export default TimeLine;
+
+const styles = StyleSheet.create({
+  dotContainer: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderColor: "gray",
+  },
+  tileContainer: {
+    width: 10,
+    height: 60,
+    marginTop: 1,
+    borderRadius: 5,
+  },
+});
