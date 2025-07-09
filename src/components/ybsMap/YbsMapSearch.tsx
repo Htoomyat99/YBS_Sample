@@ -47,7 +47,7 @@ const YbsMapSearch = ({ bottomSheetOpen }: { bottomSheetOpen: () => void }) => {
     debounce((input: "from" | "to") => {
       const ref = input === "from" ? fromInputRef : toInputRef;
       ref.current?.measureInWindow((x, y, width, height) => {
-        dropdownPositionRef.current = { top: y + 2 * height, left: x, width };
+        dropdownPositionRef.current = { top: (y - 5) + ( 2 * height), left: x, width };
         setLoading(true);
       });
     }, 500),
@@ -207,7 +207,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 5,
-    borderRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    overflow: 'hidden'
   },
   dropdownItemContainer: {
     paddingHorizontal: 15,
