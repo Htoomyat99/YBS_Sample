@@ -8,27 +8,27 @@
 
 A cross-platform (iOS/Android) public transport and map exploration app built with Expo, React Native, and Google Maps. The app features:
 
-- Interactive map with Google Maps integration
-- YBS (Yangon Bus Service) route search and suggestions
-- Bottom sheet modal for route details and selection
-- Custom UI components and icons
-- Persistent storage and state management
-- Modern navigation and theming
+- 🗺️ Interactive map with Google Maps integration
+- 🚌 YBS (Yangon Bus Service) route search and suggestions
+- 📄 Bottom sheet modal for route details and selection
+- 🎨 Custom UI components and icons
+- 💾 Persistent storage and state management
+- ✨ Modern navigation and theming
 
 ---
 
-## Features
+## ✨ Features
 
-- **Map Integration:** View and interact with Google Maps (Android) or Apple Maps (iOS)
-- **YBS Route Search:** Search for bus routes, get suggestions, and select start/end points
-- **Bottom Sheet:** View available routes, details, and timelines in a draggable modal
-- **Custom Components:** Includes timeline, route headers, and more
-- **Persistent State:** Uses Zustand and MMKV for fast, persistent state
-- **Theming:** Light/dark mode and custom color schemes
+- 🗺️ **Map Integration:** View and interact with Google Maps (Android) or Apple Maps (iOS)
+- 🚌 **YBS Route Search:** Search for bus routes, get suggestions, and select start/end points
+- 📄 **Bottom Sheet:** View available routes, details, and timelines in a draggable modal
+- 🎨 **Custom Components:** Includes timeline, route headers, and more
+- 💾 **Persistent State:** Uses Zustand and MMKV for fast, persistent state
+- 🌗 **Theming:** Light/dark mode and custom color schemes
 
 ---
 
-## Directory Structure
+## 📁 Directory Structure
 
 ```
 app/                # App entry, navigation, and screens
@@ -52,7 +52,7 @@ scripts/            # Project scripts (e.g., reset-project.js)
 
 ---
 
-## Setup & Running
+## 🛠️ Setup & Running
 
 1. **Build and install the development client:**
 
@@ -87,7 +87,7 @@ scripts/            # Project scripts (e.g., reset-project.js)
 
 ---
 
-## Android Development with EAS Build
+## 🤖 Android Development with EAS Build
 
 If you are using custom native modules or need a development build:
 
@@ -107,7 +107,7 @@ If you are using custom native modules or need a development build:
 
 ---
 
-## Main Dependencies
+## 📦 Main Dependencies
 
 - **expo**: App framework and CLI
 - **react-native**: Core mobile framework
@@ -121,30 +121,30 @@ If you are using custom native modules or need a development build:
 
 ---
 
-## Assets & Fonts
+## 🖼️ Assets & Fonts
 
 - Custom fonts: Roboto (Bold, Light, Medium, Regular, SemiBold)
 - Images: Located in `assets/images/`
 
 ---
 
-## Special Notes
+## �� Special Notes
 
 - **Platform Support:**
-  - Maps are available on Android and iOS only.
-  - Some features (e.g., Apple Maps) are iOS-specific.
+  - 📱 Maps are available on Android and iOS only.
+  - 🍏 Some features (e.g., Apple Maps) are iOS-specific.
 - **File-based Routing:** Uses Expo Router for navigation.
 - **Project Reset:**
   - Run `yarn reset-project` or `npm run reset-project` to reset the app to a blank state.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Pull requests and issues are welcome! Please follow best practices and open an issue for major changes.
 
 ---
 
-## License
+## 📄 License
 
 This project is for educational/demo purposes. See LICENSE if present.
