@@ -24,7 +24,12 @@ const SelectedRouteHeader = ({
   const distance = "3.6";
 
   return (
-    <View style={[common.flexRowBetweenCenter, { marginTop: 20 }]}>
+    <View
+      style={[
+        common.flexRowBetweenCenter,
+        { marginTop: 20, paddingHorizontal: 15 },
+      ]}
+    >
       <Pressable
         onPress={onConfirmDestination}
         style={[common.flexRowAlignCenter, styles.busContainer]}

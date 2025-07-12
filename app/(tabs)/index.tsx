@@ -12,7 +12,7 @@ import YbsMapSearch from "@/src/components/ybsMap/YbsMapSearch";
 import common from "@/src/constants/common";
 import { Colors } from "@/src/constants/variables";
 import { Ionicons } from "@expo/vector-icons";
-import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import * as Location from "expo-location";
 import { AppleMaps, GoogleMaps } from "expo-maps";
 import { GoogleMapsMapType } from "expo-maps/build/google/GoogleMaps.types";
@@ -237,18 +237,7 @@ export default function LocationPermissionExample() {
         />
         <Pressable
           onPress={goToCurrentLocation}
-          style={{
-            position: "absolute",
-            bottom: 40,
-            right: 20,
-            backgroundColor: "white",
-            elevation: 4,
-            alignItems: "center",
-            justifyContent: "center",
-            width: 40,
-            height: 40,
-            borderRadius: 20,
-          }}
+          style={styles.locationContainer}
         >
           <Ionicons name="locate" size={25} color="#146BED" />
         </Pressable>
@@ -263,13 +252,21 @@ export default function LocationPermissionExample() {
           handleIndicatorStyle={{}}
           index={1}
         >
-          <BottomSheetView style={{ flex: 1, paddingHorizontal: 15 }}>
-            {bottomSheetPage === 1 ? (
-              <AvailableRoute
-                goItemDetail={() => setBottomSheetPage(bottomSheetPage + 1)}
+          {bottomSheetPage === 1 ? (
+            <AvailableRoute
+              goItemDetail={() => setBottomSheetPage(bottomSheetPage + 1)}
+            />
+          ) : bottomSheetPage === 2 ? (
+            bottomSheetIndex === 0 ? (
+              <SelectedRouteHeader
+                isTrack={isTrack}
+                trackHandler={() => setIsTrack(!isTrack)}
+                onConfirmDestination={() =>
+                  setBottomSheetPage((prev) => prev + 1)
+                }
               />
-            ) : bottomSheetPage === 2 ? (
-              bottomSheetIndex === 0 ? (
+            ) : bottomSheetIndex === 1 ? (
+              <>
                 <SelectedRouteHeader
                   isTrack={isTrack}
                   trackHandler={() => setIsTrack(!isTrack)}
@@ -277,27 +274,17 @@ export default function LocationPermissionExample() {
                     setBottomSheetPage((prev) => prev + 1)
                   }
                 />
-              ) : bottomSheetIndex === 1 ? (
-                <>
-                  <SelectedRouteHeader
-                    isTrack={isTrack}
-                    trackHandler={() => setIsTrack(!isTrack)}
-                    onConfirmDestination={() =>
-                      setBottomSheetPage((prev) => prev + 1)
-                    }
-                  />
 
-                  <TimeLine isTrack={isTrack} />
-                </>
-              ) : null
-            ) : bottomSheetPage === 3 ? (
-              bottomSheetIndex === 0 ? (
-                <DestinationHeader />
-              ) : (
-                <DrivingDestinations />
-              )
-            ) : null}
-          </BottomSheetView>
+                <TimeLine isTrack={isTrack} />
+              </>
+            ) : null
+          ) : bottomSheetPage === 3 ? (
+            bottomSheetIndex === 0 ? (
+              <DestinationHeader />
+            ) : (
+              <DrivingDestinations />
+            )
+          ) : null}
         </BottomSheetModal>
       </>
     );
@@ -311,3 +298,18 @@ export default function LocationPermissionExample() {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  locationContainer: {
+    position: "absolute",
+    bottom: 40,
+    right: 20,
+    backgroundColor: "white",
+    elevation: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+});

@@ -80,6 +80,7 @@ export default DestinationHeader;
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 5,
+    paddingHorizontal: 15,
   },
   busNoContainer: {
     borderWidth: 1,

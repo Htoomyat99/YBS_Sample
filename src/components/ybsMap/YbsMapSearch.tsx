@@ -47,7 +47,11 @@ const YbsMapSearch = ({ bottomSheetOpen }: { bottomSheetOpen: () => void }) => {
     debounce((input: "from" | "to") => {
       const ref = input === "from" ? fromInputRef : toInputRef;
       ref.current?.measureInWindow((x, y, width, height) => {
-        dropdownPositionRef.current = { top: (y - 5) + ( 2 * height), left: x, width };
+        dropdownPositionRef.current = {
+          top: y - 5 + 2 * height,
+          left: x,
+          width,
+        };
         setLoading(true);
       });
     }, 500),
@@ -180,6 +184,7 @@ const YbsMapSearch = ({ bottomSheetOpen }: { bottomSheetOpen: () => void }) => {
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => item.id.toString()}
             renderItem={renderDropdownItem}
+            keyboardShouldPersistTaps="handled"
           />
         </View>
       )}
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   dropdownItemContainer: {
     paddingHorizontal: 15,

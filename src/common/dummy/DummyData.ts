@@ -225,13 +225,14 @@ export const BusRoutes: BusRoutesType[] = [
 ];
 
 export const Destination: DestinationType[] = [
-  { id: 1, route: "Seik Pyoe Yay" },
-  { id: 2, route: "Han Thar Waddy Awaine" },
-  { id: 3, route: "Mahar Myaing" },
-  { id: 4, route: "Maynigone" },
-  { id: 5, route: "Helpin" },
-  { id: 6, route: "Bago Club" },
-  { id: 7, route: "City Mall" },
+  { id: 1, route: "" },
+  { id: 2, route: "Seik Pyoe Yay" },
+  { id: 3, route: "Han Thar Waddy Awaine" },
+  { id: 4, route: "Mahar Myaing" },
+  { id: 5, route: "Maynigone" },
+  { id: 6, route: "Helpin" },
+  { id: 7, route: "Bago Club" },
+  { id: 8, route: "City Mall" },
 ];
 
 export const markersGoogle = [

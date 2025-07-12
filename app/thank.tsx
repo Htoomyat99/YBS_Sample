@@ -4,7 +4,7 @@ import { Colors } from "@/src/constants/variables";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const Thank = () => {
   const colors = useThemeColors();
@@ -12,6 +12,11 @@ const Thank = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Image
+        source={require("@/assets/images/busStand.png")}
+        style={{ paddingHorizontal: 20 }}
+      />
+
       <Text style={[common.regularxxLarge25, styles.headerText]}>
         {local.thankForRideHeaderMessage}
       </Text>

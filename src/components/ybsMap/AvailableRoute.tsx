@@ -6,7 +6,7 @@ import { local } from "@/src/constants/local";
 import { Colors } from "@/src/constants/variables";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { useCallback } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -19,6 +19,7 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
     ({ item }: { item: AvailableRoutesType }) => (
       <Pressable
         onPress={goItemDetail}
+        key={item.id.toString()}
         style={{
           ...styles.itemContainer,
           borderBottomColor: colors.divider,
@@ -59,12 +60,17 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
   );
 
   return (
-    <>
+    <View style={{ flex: 1, paddingHorizontal: 15 }}>
       <Text style={[common.regularxxLarge, { color: colors.text }]}>
         {local.availableRoutes}
       </Text>
 
-      <View style={{ marginTop: 20, ...common.flexRowBetweenCenter }}>
+      <View
+        style={{
+          marginVertical: 20,
+          ...common.flexRowBetweenCenter,
+        }}
+      >
         <View style={styles.container}>
           <Text
             numberOfLines={1}
@@ -86,13 +92,14 @@ const AvailableRoute = ({ goItemDetail }: { goItemDetail: () => void }) => {
         </View>
       </View>
 
-      <BottomSheetFlatList
-        data={AvailableRoutes}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{ marginTop: 10 }}
-      />
-    </>
+      <BottomSheetScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
+        {AvailableRoutes.map((item) => renderItem({ item }))}
+      </BottomSheetScrollView>
+    </View>
   );
 };
 

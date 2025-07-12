@@ -3,8 +3,9 @@ import { BusRoutesType } from "@/src/common/dummy/dummyType";
 import common from "@/src/constants/common";
 import { local } from "@/src/constants/local";
 import { Colors } from "@/src/constants/variables";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
   const currentTime = "9:30 AM";
@@ -12,7 +13,10 @@ const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
 
   const busRouteRenderItem = ({ item }: { item: BusRoutesType }) => {
     return (
-      <View style={{ flexDirection: "row", paddingHorizontal: 15 }}>
+      <View
+        style={{ flexDirection: "row", paddingHorizontal: 15 }}
+        key={item.id.toString()}
+      >
         <View style={{ alignItems: "center", marginRight: 25 }}>
           <View
             style={[
@@ -73,14 +77,13 @@ const TimeLine = ({ isTrack }: { isTrack: boolean }) => {
   };
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <FlatList
-        data={BusRoutes}
-        showsVerticalScrollIndicator={false}
-        renderItem={busRouteRenderItem}
-        contentContainerStyle={{ paddingTop: 20 }}
-      />
-    </View>
+    <BottomSheetScrollView
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1, marginTop: 20, paddingHorizontal: 15 }}
+      contentContainerStyle={{ paddingVertical: 25 }}
+    >
+      {BusRoutes.map((item) => busRouteRenderItem({ item }))}
+    </BottomSheetScrollView>
   );
 };
 
