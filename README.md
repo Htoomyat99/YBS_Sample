@@ -1,50 +1,150 @@
-# Welcome to your Expo app 👋
+# TestingExpoMap
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> **⚠️ Important:**
+>
+> This project requires a custom development build created with EAS (Expo Application Services).
+> **You cannot run this project in Expo Go.**
+> Please follow the instructions in the “Android Development with EAS Build” section below to build and run the app.
 
-## Get started
+A cross-platform (iOS/Android) public transport and map exploration app built with Expo, React Native, and Google Maps. The app features:
 
-1. Install dependencies
+- Interactive map with Google Maps integration
+- YBS (Yangon Bus Service) route search and suggestions
+- Bottom sheet modal for route details and selection
+- Custom UI components and icons
+- Persistent storage and state management
+- Modern navigation and theming
+
+---
+
+## Features
+
+- **Map Integration:** View and interact with Google Maps (Android) or Apple Maps (iOS)
+- **YBS Route Search:** Search for bus routes, get suggestions, and select start/end points
+- **Bottom Sheet:** View available routes, details, and timelines in a draggable modal
+- **Custom Components:** Includes timeline, route headers, and more
+- **Persistent State:** Uses Zustand and MMKV for fast, persistent state
+- **Theming:** Light/dark mode and custom color schemes
+
+---
+
+## Directory Structure
+
+```
+app/                # App entry, navigation, and screens
+  (tabs)/           # Main tabbed navigation and map screen
+  notification/     # Notification-related screens
+  +not-found.tsx    # 404 page
+assets/             # Fonts and images
+src/
+  components/       # Reusable UI components
+    ybsMap/         # YBS map and route-related components
+    ui/             # Icon and tab bar UI
+  common/           # Shared logic, dummy data, utils, API
+  constants/        # App-wide constants
+  hooks/            # Custom React hooks
+  state/            # Zustand stores
+  queries/          # React Query hooks
+  types/            # TypeScript types
+ios/                # iOS native project files
+scripts/            # Project scripts (e.g., reset-project.js)
+```
+
+---
+
+## Setup & Running
+
+1. **Build and install the development client:**
 
    ```bash
+   eas build -p android --profile development
+   ```
+
+   - Download and install the resulting APK on your Android device.
+   - This step is required before you can run the app locally.
+
+2. **Install dependencies:**
+
+   ```bash
+   yarn install
+   # or
    npm install
    ```
 
-2. Start the app
+3. **Start the app:**
 
+   ```bash
+   yarn start
+   # or
+   npm start
+   ```
+
+   - Use the Expo CLI to run on Android, iOS, or web.
+
+4. **iOS/Android:**
+   - For iOS: `yarn ios` (requires Xcode)
+   - For Android: `yarn android` (requires Android Studio)
+
+---
+
+## Android Development with EAS Build
+
+If you are using custom native modules or need a development build:
+
+1. **Build the development APK:**
+   ```bash
+   eas build -p android --profile preview
+   ```
+2. **Install the APK on your Android device.**
+3. **Start the Metro bundler:**
    ```bash
    npx expo start
    ```
+4. **Open the app on your device.**  
+   The app will connect to your local dev server for live development.
 
-In the output, you'll find options to open the app in a
+> **Note:** This is required if you use native modules not supported by Expo Go.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Main Dependencies
 
-## Get a fresh project
+- **expo**: App framework and CLI
+- **react-native**: Core mobile framework
+- **expo-maps**: Google/Apple Maps integration
+- **@gorhom/bottom-sheet**: Bottom sheet modal
+- **zustand**: State management
+- **react-query**: Data fetching and caching
+- **expo-location**: Location services
+- **@expo/vector-icons**: Icon set
+- **expo-router**: Navigation and routing
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## Assets & Fonts
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- Custom fonts: Roboto (Bold, Light, Medium, Regular, SemiBold)
+- Images: Located in `assets/images/`
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## Special Notes
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Platform Support:**
+  - Maps are available on Android and iOS only.
+  - Some features (e.g., Apple Maps) are iOS-specific.
+- **File-based Routing:** Uses Expo Router for navigation.
+- **Project Reset:**
+  - Run `yarn reset-project` or `npm run reset-project` to reset the app to a blank state.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Contributing
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Pull requests and issues are welcome! Please follow best practices and open an issue for major changes.
+
+---
+
+## License
+
+This project is for educational/demo purposes. See LICENSE if present.
